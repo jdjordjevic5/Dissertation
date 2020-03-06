@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#090909"
+    tools:context=".MainActivity">
+
+
+    <ImageView
+        android:id="@+id/btnSpeak"
+        android:layout_width="54dp"
+        android:layout_height="56dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="48dp"
+        android:contentDescription="TODO"
+        android:gravity="center"
+        android:src="@drawable/ic_mic"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/start_view_result"
+        android:layout_width="371dp"
+        android:layout_height="215dp"
+        android:layout_marginTop="32dp"
+        android:background="#292828"
+        android:textColor="#FFFFFF"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnSpeak"
+        tools:text="Starting Point" />
+
+    <TextView
+        android:id="@+id/end_view_result"
+        android:layout_width="374dp"
+        android:layout_height="220dp"
+        android:layout_marginBottom="28dp"
+        android:background="#292828"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.567"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/start_view_result"
+        app:layout_constraintVertical_bias="0.745"
+        tools:text="End Point" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

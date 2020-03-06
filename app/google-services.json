@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1014966818969",
+    "firebase_url": "https://smartbusstop-af473.firebaseio.com",
+    "project_id": "smartbusstop-af473",
+    "storage_bucket": "smartbusstop-af473.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1014966818969:android:acc8809641a8e37a8f4008",
+        "android_client_info": {
+          "package_name": "com.example.dissertation"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1014966818969-rgku7v34ooj4tacg291337nbsb4oeck4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA_oPixa6uXlYk8mQfsKL4_6qvlWLXoCaA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1014966818969-rgku7v34ooj4tacg291337nbsb4oeck4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
