@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Dissertation</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="direction_fragment">Direction Fragment</string>
+    <string name="restaurants_fragment">Restaurant Fragment</string>
+    <string name="coffee_fragment">Coffee Fragment</string>
+    <string name="cultural_fragment">Cultural Fragment</string>
 </resources>
