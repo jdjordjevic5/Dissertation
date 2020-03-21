@@ -3,5 +3,6 @@
     <item name="etOrigin" type="id" />
     <item name="text_view_result" type="id" />
     <item name="button_parse" type="id" />
-    <item name="userList" type="id" />
+    <item name="layoutCoffee" type="id" />
+    <item name="viewPager" type="id" />
 </resources>

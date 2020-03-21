@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    tools:context=".Directions">
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation"
+        android:layout_width="0dp"
+        android:layout_height="51dp"
+        android:layout_alignParentBottom="true"
+        android:background="#7EB1FD"
+        app:itemIconTint="#FFFFFF"
+        app:itemTextColor="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/navigation" />
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tabLayout"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:background="#FBFBFB"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/recyclerView"
+        app:tabIndicatorAnimationDuration="300"
+        app:tabIndicatorColor="#7EB1FD"
+        app:tabMaxWidth="150dp"
+        app:tabPaddingEnd="0dp"
+        app:tabPaddingStart="0dp"
+        app:tabTextAppearance="@style/TabTextSize">
+
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/tabDirection"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Direction" />
+
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/tabRestaurants"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Restaurants" />
+
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/tabCoffee"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Coffee" />
+
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/tabCultural"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cultural" />
+    </com.google.android.material.tabs.TabLayout>
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/viewPager"
+        android:layout_width="0dp"
+        android:layout_height="390dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tabLayout">
+    </androidx.viewpager.widget.ViewPager>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
