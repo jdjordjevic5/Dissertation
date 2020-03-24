@@ -39,10 +39,12 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.concurrent.ExecutionException;
 
-public class Directions extends AppCompatActivity {
+public class Directions extends AppCompatActivity implements RestaurantListener{
 
     private RequestQueue mQueue_route;
     private RequestQueue mQueue_restaurant;
@@ -67,24 +69,20 @@ public class Directions extends AppCompatActivity {
     private String departure_time;
     private String distance;
     private String duration;
-
     private double userlat;
     private double userlng;
+    PageAdapter pageAdapter;
+    ViewPager viewPager;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_directions);
 
-
-        mQueue_restaurant = Volley.newRequestQueue(Directions.this);
-        jsonParseRestaurant();
-        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
-        String restaurant = sp.getString("Restaurant", "");
-
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
         TabLayout tabLayout = findViewById(R.id.tabLayout);
-        ViewPager viewPager = findViewById(R.id.viewPager);
+        viewPager = findViewById(R.id.viewPager);
 
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
@@ -100,16 +98,23 @@ public class Directions extends AppCompatActivity {
             }
         });
 
-        PageAdapter pageAdapter = new PageAdapter(Directions.this.getSupportFragmentManager());
+        try {
+            new RestaurantGetRequest(this).execute();
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+
+        pageAdapter = new PageAdapter(Directions.this.getSupportFragmentManager());
         FragmentDirection fragmentDirection = new FragmentDirection();
         FragmentRestaurant fragmentRestaurant = new FragmentRestaurant();
         FragmentCoffee fragmentCoffee = new FragmentCoffee();
         FragmentCultural fragmentCultural = new FragmentCultural();
 
         pageAdapter.addDirection(fragmentDirection, "direction", "asdsa");
-        pageAdapter.addRestaurant(fragmentRestaurant, "restaurant", restaurant);
-        pageAdapter.addCoffee(fragmentCoffee, "coffee","Hello");
-        pageAdapter.addCultural(fragmentCultural, "cultural","olaa");
+        pageAdapter.addRestaurant(fragmentRestaurant, "restaurant", "");
+        pageAdapter.addCoffee(fragmentCoffee, "coffee", "Hello");
+        pageAdapter.addCultural(fragmentCultural, "cultural", "olaa");
+
 
         viewPager.setAdapter(pageAdapter);
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
@@ -142,6 +147,13 @@ public class Directions extends AppCompatActivity {
             });
 
         mQueue_route = Volley.newRequestQueue(Directions.this);
+        mQueue_restaurant = Volley.newRequestQueue(Directions.this);
+
+//        jsonParseRestaurant();
+//        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(Directions.this);
+//        String value = sp.getString("key", "");
+//
+//        System.out.println("THis is value from restaurant: " + value);
 
         jsonParseOrigin();
         jsonParseDestination(input_destination);
@@ -457,12 +469,17 @@ public class Directions extends AppCompatActivity {
                         try {
                             JSONArray restaurantJSONArray = response_restaurant.getJSONArray("results");
                             for (int i = 0; i < restaurantJSONArray.length(); i++) {
-                                JSONObject restaurantJSONObject = restaurantJSONArray.getJSONObject(i);
-                                if (restaurantJSONObject.has("opening_hours")) {
-                                    String restaurant_name = restaurantJSONObject.getString("name");
+                                if (restaurantJSONArray.getJSONObject(i).has("opening_hours")) {
+                                    String restaurant_name = restaurantJSONArray.getJSONObject(i).getString("name");
+                                    ArrayList<String> restaurantList = new ArrayList<>();
+                                    restaurantList.add(restaurant_name);
+
+
                                     SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(Directions.this);
                                     SharedPreferences.Editor restaurant = sp.edit();
-                                    restaurant.putString("Restaurant", restaurant_name);
+//                                    for (int j = 0; j < restaurantList.size(); j++) {
+//                                        restaurant.putString(String.valueOf(j), restaurantList.get(j));
+//                                    }
                                     restaurant.apply();
                                 }
                             }
@@ -495,6 +512,12 @@ public class Directions extends AppCompatActivity {
         mQueue_restaurant.add(request_restaurant);
     }
 
+    @Override
+    public void onRestaurantSuccess(List<RestaurantNote> restaurants) {
+        for (RestaurantNote route : restaurants) {
+            String name = route.getName();
+        }
+    }
 
 //    private void viewAll() {
 //

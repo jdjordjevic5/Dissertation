@@ -36,7 +36,6 @@ public class FragmentCultural extends Fragment {
      */
     // TODO: Rename and change types and number of parameters
     static FragmentCultural newInstance(String key, String param1) {
-        System.out.println("From newInstance in Cultural " + param1);
         //PACK DATA IN A BUNDLE
         FragmentCultural fragmentCultural = new FragmentCultural();
         Bundle args = new Bundle();
@@ -52,7 +51,6 @@ public class FragmentCultural extends Fragment {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             name = getArguments().getString(ARG_PARAM1);
-            System.out.println("This is name in Cultural" + name);
         }
     }
 

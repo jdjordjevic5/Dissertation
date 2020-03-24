@@ -3,6 +3,7 @@ package com.example.dissertation;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +13,7 @@ import android.widget.LinearLayout;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -19,8 +21,8 @@ import org.jetbrains.annotations.NotNull;
  * create an instance of this fragment.
  */
 public class FragmentDirection extends Fragment {
-    private static final String ARG_PARAM1 = "direction";
 
+    private static final String ARG_PARAM1 = "direction";
     private String name;
 
     public FragmentDirection() {
@@ -44,7 +46,6 @@ public class FragmentDirection extends Fragment {
         return fragmentDirection;
     }
 
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,17 +54,25 @@ public class FragmentDirection extends Fragment {
         }
     }
 
-
     @Override
     public View onCreateView(@NotNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_direction, container, false);
         LinearLayout layout = view.findViewById(R.id.layoutDirection);
-        for (int i = 1; i <= 4; i++) {
+        ArrayList<String> arrayList = new ArrayList<>();
+        arrayList.add("first");
+        arrayList.add("second");
+        arrayList.add("third");
+        arrayList.add("fourth");
+        arrayList.add("fifth");
+
+        for (int i = 0; i < 5; i++) {
             Button button = new Button(getActivity());
-            button.setText(name);
-            button.setPadding(5, 0, 5, 0);
+            for(int j = 0; j < arrayList.size(); j++){
+                button.setText(arrayList.get(j));
+            }
+            button.setPadding(0, 0, 0, 0);
             button.setTextSize(14f);
             layout.addView(button);
         }
